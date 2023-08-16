@@ -1,0 +1,28 @@
+<PlayerEcsample>:
+    slider: slider
+    file_name: label
+    time: time
+    all_time: all_time
+    play: play
+    pause: pause
+    stop: stop
+    orientation: "vertical"
+    Button:
+        text: "load"
+        on_press: root.load_music()
+    Label:
+        id: label
+        text: "Араб музыку украл"
+        font_size: "15sp"
+    Slider:
+        id: slider
+        on_touch_move: root.music_position(self)
+        on_touch_up: root.music_position(self)
+        size_hint: (1, 0.1)
+    BoxLayout:
+        orientation: "gorizontal"
+        Label:
+        id: time
+        text: "00:00"
+        font_size: "50sp"
+
