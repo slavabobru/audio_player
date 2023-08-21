@@ -54,7 +54,7 @@ class PlayerEcsample(BoxLayout):
 
     def play_music(self):
         self.play.disabled = True
-        self.pausa.disabled = False
+        self.pause.disabled = False
         self.stop.disabled = False
         self.sound.play()
         self.timer.start()
@@ -65,7 +65,7 @@ class PlayerEcsample(BoxLayout):
         self.sound.stop()
         self.slider.value = pos
         self.play.disabled = False
-        self.pausa.disabled = True
+        self.pause.disabled = True
         self.timer = Timer(1, self.position)
 
     def stop_music(self):
@@ -76,7 +76,7 @@ class PlayerEcsample(BoxLayout):
         self.slider.value = 0
         self.sound.seek(0)
         self.stop.disabled = True
-        self.pausa.disabled = True
+        self.pause.disabled = True
 
     def position(self):
         self.timer = Timer(1, self.position)

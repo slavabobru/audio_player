@@ -20,9 +20,33 @@
         on_touch_up: root.music_position(self)
         size_hint: (1, 0.1)
     BoxLayout:
-        orientation: "gorizontal"
+        orientation: "horizontal"
         Label:
-        id: time
-        text: "00:00"
-        font_size: "50sp"
-
+            id: time
+            text: "00:00"
+            font_size: "50sp"
+        Label:
+            text: "/"
+            font_size: "50sp"
+            size_hint: (0.01, 1)
+        Label:
+            id: all_time
+            text: "00:00"
+            font_size: "50sp"
+    BoxLayout:
+        orientation: "horizontal"
+        Button:
+            id: play
+            text: "play"
+            disabled: True
+            on_press: root.play_music()
+        Button:
+            id: pause
+            text: "pause"
+            disabled: True
+            on_press: root.pause_music()
+        Button:
+            id: stop
+            text: "stop"
+            disabled: True
+            on_press: root.stop_music()
