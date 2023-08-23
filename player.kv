@@ -1,52 +1,53 @@
-<PlayerEcsample>:
-    slider: slider
-    file_name: label
-    time: time
-    all_time: all_time
-    play: play
-    pause: pause
-    stop: stop
-    orientation: "vertical"
+#:kivy 1.10.0
+<PlayerExample>:
+    slider:slider
+    filename:label
+    time:time
+    all_time:all_time
+    play:play
+    pause:pause
+    stop:stop
+    orientation:'vertical'
     Button:
-        text: "load"
-        on_press: root.load_music()
+        text:'Load'
+        on_press:root.load_music()
     Label:
-        id: label
-        text: "Араб музыку украл"
-        font_size: "15sp"
+        id:label
+        text:'No song loaded'
+        font_size:'15sp'
     Slider:
-        id: slider
-        on_touch_move: root.music_position(self)
-        on_touch_up: root.music_position(self)
-        size_hint: (1, 0.1)
+        id:slider
+        on_touch_move:root.music_position(self)
+        on_touch_up:root.music_position(self)
+        size_hint:(1,0.1)
     BoxLayout:
-        orientation: "horizontal"
+        orientation:'horizontal'
         Label:
-            id: time
-            text: "00:00"
-            font_size: "50sp"
+            id:time
+            text:'00:00'
+            font_size:'50sp'
         Label:
-            text: "/"
-            font_size: "50sp"
-            size_hint: (0.01, 1)
+            text:'/'
+            font_size:'50sp'
+            size_hint:(0.01,1)
         Label:
-            id: all_time
-            text: "00:00"
-            font_size: "50sp"
+            id:all_time
+            text:'00:00'
+            font_size:'50sp'
     BoxLayout:
-        orientation: "horizontal"
+        orientation:'horizontal'
         Button:
-            id: play
-            text: "play"
-            disabled: True
-            on_press: root.play_music()
+            id:play
+            text:'Play'
+            disabled:True
+            on_press:root.play_music()
         Button:
-            id: pause
-            text: "pause"
-            disabled: True
-            on_press: root.pause_music()
+            id:pause
+            text:'Pause'
+            disabled:True
+            on_press:root.pause_music()
         Button:
-            id: stop
-            text: "stop"
-            disabled: True
-            on_press: root.stop_music()
+            id:stop
+            text:'Stop'
+            disabled:True
+            on_press:root.stop_music()

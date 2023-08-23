@@ -8,12 +8,11 @@ from kivy.core.window import Window
 import easygui
 from mutagen.mp3 import MP3
 
-
 Window.size = (400, 400)
 
-class PlayerEcsample(BoxLayout):
+class PlayerExample(BoxLayout):
     slider = ObjectProperty(None)
-    file_name = ObjectProperty(None)
+    filename = ObjectProperty(None)
     play = ObjectProperty(None)
     pause = ObjectProperty(None)
     stop = ObjectProperty(None)
@@ -33,12 +32,13 @@ class PlayerEcsample(BoxLayout):
             self.seconds = 0
             self.time.text = "00:00"
         if self.music_file == None:
-            self.file_name.text = "Араб музыку украл"
+            self.filename.text = "No loaded song"
             self.all_time.text = "00:00"
             if self.timer != None:
-                self.timer.cancel()
+                self.timer.cansel()
             self.play.disabled = True
             return
+
         self.sound = SoundLoader.load(self.music_file)
         audio = MP3(self.music_file)
         m, s = divmod(audio.info.length + 1, 60)
@@ -49,8 +49,8 @@ class PlayerEcsample(BoxLayout):
         self.sound.seek(0)
         self.sound.stop()
         self.play.disabled = False
-        self.timer = Timer(1, self.position)
-        self.file_name.text = self.sound.source
+        self.timer = Timer(1,self.position)
+        self.filename.text = self.sound.source
 
     def play_music(self):
         self.play.disabled = True
@@ -58,6 +58,19 @@ class PlayerEcsample(BoxLayout):
         self.stop.disabled = False
         self.sound.play()
         self.timer.start()
+        self.sound = SoundLoader.load(self.music_file)
+        audio = MP3(self.music_file)
+        l = audio.info.length
+        while l > 0:
+            self.sound.play()
+        # # m, s = divmod(audio.info.length + 1, 60)
+        # # t = "%02d:%02d" % (m, s)
+        # # self.all_time.text = t
+        # self.slider.max = int(audio.info.length)
+        # while self.all_time != "00:00":
+        #     self.sound.play()
+
+
 
     def pause_music(self):
         self.timer.cancel()
@@ -101,18 +114,16 @@ class PlayerEcsample(BoxLayout):
         t = "%02d:%02d" % (m, s)
         self.time.text = t
 
-
 class PlayerApp(App):
     player = None
     def build(self):
         Window.bind(on_close = self.on_request_close)
-        self.player = PlayerEcsample()
+        self.player = PlayerExample()
         return self.player
 
     def on_request_close(self, *args):
         self.player.sound.stop()
         self.player.timer.cancel()
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     PlayerApp().run()
